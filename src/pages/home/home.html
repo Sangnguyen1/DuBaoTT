@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+   
+<ion-content padding class="home">
+
+
+    <ion-item>
+        <ion-label> -- select --</ion-label>
+        <ion-select [(ngModel)]="localtion" (ionChange)="getWeather($event,'VN')">
+          <ion-option value="Ha Noi">Ha Noi</ion-option>
+          <ion-option value="Thanh pho Ho Chi Minh">Thanh pho Ho Chi Minh</ion-option>
+          <ion-option value="DaNang">Da Nang</ion-option>     
+          <ion-option value="Ninh Binh">Ninh Bình </ion-option>
+          <ion-option value="Thanh Hoa">Thanh Hóa </ion-option>
+          <ion-option value="Ha Giang">Hà Giang</ion-option>
+        </ion-select>
+      </ion-item>
+        
+
+     
+       <h2 class="container">Country: {{weatherLocaltion['name']}}</h2>
+       <ion-grid class="assd" *ngIf="weatherLocaltion['weather']">
+        <ion-row>
+          <ion-col *ngFor="let item of weatherLocaltion['weather']"  offset-25>
+             <h1 class="location">{{item.main}}</h1>
+             <h3 class="icon"><img src="http://openweathermap.org/img/w/{{item.icon}}.png" alt=""/></h3>  
+             <h3 class="temp">{{item.description}}</h3>
+                 <h3 class="desc">{{item.ion-item}}</h3>
+             <a href="api.openweathermap.org/data/2.5/weather?q={{item.name}}" ></a>
+               
+         
+          </ion-col>
+       </ion-row>
+  
+   </ion-grid> 
+
+    <p *ngIf="!weatherLocaltion['weather']">Khong co du lieu</p>  
+   
+   
+
+</ion-content>
